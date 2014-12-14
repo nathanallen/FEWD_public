@@ -53,14 +53,41 @@ How did we get from "HyperText" to the media-rich, responsive, modern web?
 #### Links
 * ```<a href="Link">```First item```</a>```
 
+#### Escaping
+* What characters are illegal in html?
+  * If it looks like a tag, html will treat it like a tag!
+  * e.g. `<fake>`
+  * In order to display the brackets you need to convert them to their legal form: "<" or `&lt;` (less than), ">" or `&gt;` (greater than).
+  * This is why you will sometimes see `&` represented as `&amp;` (ampersand).
+* What about special characters like the accented `é`?
+  * This is where `<meta charset="utf-8">` comes into play!
+  * utf-8 supports additional/special characters. Without specifying a character encoding your `é` will become `Ã©`!
+
 ### HTML Layout
 * Nesting Tags & Indentation
   * Rule of thumb: Every time you open a new tag, tab *in* one level of indentation!
-* HTML Skeleton
-  * HTML5: `<!DOCTYPE html>`
-  * `<html>`
-  * `<head>`
-  * `<body>`
+* HTML5 Declaration: ```<!DOCTYPE html>```
+* Basic HTML Skeleton:
+
+``` html
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>My Website</title>
+    <link rel="stylesheet" href="css/your_external_stylesheet.css">
+  </head>
+
+  <body>
+    <!-- Your Content Here! -->
+  </body>
+</html>
+```
+
+* What is the root element or node? <html>
+* How many children does html have? 2! head and body.
+
 * Exercise 02: HTML5 Press Release
 
 
@@ -70,12 +97,13 @@ How did we get from "HyperText" to the media-rich, responsive, modern web?
 * Exercise 03: About Me
 * CSS Syntax
 
-![](../img/unit_1/css_syntax.png)
+![CSS Syntax](../img/unit_1/css_syntax.png)
 
 ####Where can styles live?
 * Inline
-* In the `head`
+* In the `head` inside of a `<script></script>` tag
 * In a separate file (preferred)
+
 What are the benefits/limitations of each of these options?
 
 
@@ -94,7 +122,7 @@ The `p` is called a **selector**, and it's followed by a set of **declarations**
 Work together to describe the syntax.
 
 #### Syntax
-The **selector** (`p`) specifies what parts of the HTML document should be styled by the declaration. It can be read as "For all <p> elements on the page, apply the following rules..."
+The **selector** (`p`) specifies what parts of the HTML document should be styled by the declaration. It can be read as "For all `<p>` elements on the page, apply the following rules..."
 
 Every declaration is a **property** followed by a **value**, separated by a colon, ending in a semicolon.
 
@@ -113,11 +141,25 @@ Note:
 
 The `href` attribute value works very similarly to linking to an image, or to another page.
 
-#### Remaining Time
-* Exercise 04: Resume
+#### Colors
+  * Colors are most commonly expressed as hexadecimal values, like `#00CC99` or with their English equivalent, like "teal".
+  * Hex values are a way of encoding how much Red (R), Blue (B) and Green (G) "paint" get mixed together, e.g. #RRBBGG.
+  * Hexadecimal is base 16! Here's how you count to 32 in Hexadecimal: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E, F, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 1A, 1B, 1C, 1D, 1E, 1F, 20.
+  * 16^6 = 16,777,216 colors!
 
 #### Specificity
 * Which style wins!?
+  * Later styles overwrite earlier styles.
+  * More specific selectors beat less specific selectors.
+  * Inline styles beat external stylesheets.
+
+#### Default Styling
+* Eventually you will start fighting with the default styles applied to html tags. For example, h1 tags have a top and bottom margin of .67em.
+* Here's a helpful reference point: http://www.w3.org/TR/CSS2/sample.html
+* Remember, this can also vary from browser to browser!
+
+#### Remaining Time
+* Exercise 04: Resume
 
 ### Looking Forward:
 * What's javascript? [demo](#click-it-good)
@@ -131,7 +173,7 @@ The `href` attribute value works very similarly to linking to an image, or to an
 
 ## In-Class Demos
 #### HyperText
-* Explore Tim Berners-Lee's demonstration of "HyperText"
+* Explore Tim Berners-Lee's demonstration of "[HyperText](http://www.w3.org/History/19921103-hypertext/hypertext/WWW/WhatIs.html)"
 * Did Tim use Chrome? Can we still open the file!? Can we render his mark up!?
 * What tags are still in use today? What's changed? (Make sure to [view source](view-source:http://www.w3.org/History/19921103-hypertext/hypertext/WWW/Terms.html#browser)!)
 * What is "plain text" anyhow?
@@ -171,8 +213,10 @@ The `href` attribute value works very similarly to linking to an image, or to an
 ####SublimeText
 * `tab`  or `shift+]` (indent)
 * `shift+tab` or `shift+[` (unindent)
+* `cmd+/` (comment code)
+* `cmd+arrow-key` (jump to the beginning/end of a line, or the top/bottom of the page).
 
-Learn 'em and use 'em! Don't forget you can always click on menu options to jog your memory! The keyboard shortcuts are listed next to each menu option.
+Learn 'em and use 'em! Don't forget you can always click on the menu to jog your memory! The keyboard shortcuts are listed next to each menu option.
 
 ## Resources
 * How do I know what HTML tag to use? [List of HTML5 Tags](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5/HTML5_element_list?redirectlocale=en-US&redirectslug=HTML%2FHTML5%2FHTML5_element_list)
