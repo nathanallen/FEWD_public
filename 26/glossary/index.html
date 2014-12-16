@@ -1,0 +1,133 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Glossary</title>
+    <script src='https://cdn.firebase.com/js/client/2.0.4/firebase.js'></script>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <style>
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 10px auto 0px;
+        max-width: 960px;
+      }
+
+      input#termInput {
+        float: left;
+        width: 33%;
+        height: 50px;
+        font-size: 2em;
+      }
+
+      textarea#definitionInput {
+        float: left;
+        width: 66%;
+        height: 50px;
+        font-size: 2em;
+        resize: vertical;
+      }
+
+      textarea#definitionInput:focus {
+        font-size: 1em;
+      }
+
+      .warn {
+        outline-color: red;
+      }
+
+      div#glossaryDiv {
+        padding: 60px 0;
+        line-height: 1.5em;
+      }
+
+      div#glossaryDiv div + div {
+        margin-top: 1em;
+      }
+
+      strong {
+        font-size: 1.25em;
+        font-family: monospace;
+      }
+
+      @media screen and (max-width: 500px) {
+        body {
+          margin: 0 auto;
+        }
+
+        input#termInput {
+          width: 100%;
+          height: 50px;
+          font-size: 2em;
+        }
+
+        textarea#definitionInput {
+          width: 100%;
+          height: 50px;
+          font-size: 2em;
+          resize: vertical;
+          margin-bottom: 10px;
+        }
+
+        div#glossaryDiv {
+          padding: 10px;
+        }
+
+    </style>
+
+  </head>
+  <body>
+
+      <input type='text' id='termInput' placeholder='Term'>
+      <textarea id='definitionInput' placeholder='Definition'></textarea>
+
+    <div id='glossaryDiv'></div>
+    <script>
+      var myDataRef = new Firebase('https://resplendent-inferno-2465.firebaseio-demo.com/');
+      $('#definitionInput, #termInput').keypress(function (e) {
+        if (e.keyCode == 13) {
+          var term = $('#termInput').removeClass('warn').val(),
+              key = term.replace(/[^A-Za-z\-]+/g, '').toLowerCase()
+          var definition = $('#definitionInput').removeClass('warn').val();
+
+          if (!key.length) {
+            $('#termInput').addClass('warn').focus()
+            return false
+          }
+
+          if (!definition.length) {
+            $('#definitionInput').addClass('warn').focus()
+            return false
+          }
+
+          myDataRef.child(key).set({term: term, definition: definition});
+          $('#termInput, #definitionInput').val('').blur().removeClass('warn');
+        }
+      });
+      myDataRef.on('child_added', function(snapshot) {
+        var entry = snapshot.val();
+        console.log(entry)
+        displayGlossaryDefinition(entry.term, entry.definition);
+      });
+
+      myDataRef.on('child_changed', function(snapshot) {
+        var entry = snapshot.val();
+        console.log(entry)
+        displayUpdatedGlossaryDefinition(entry.term, entry.definition);
+      });
+
+      function displayGlossaryDefinition(term, definition) {
+        $('<div/>').text(definition).attr('id', term).prepend($('<strong/>').text(term+': ')).appendTo($('#glossaryDiv'));
+        // $('#glossaryDiv')[0].scrollTop = $('#glossaryDiv')[0].scrollHeight;
+      };
+      function displayUpdatedGlossaryDefinition(term, definition) {
+        $('div#' + term).text(definition).prepend($('<strong/>').text(term+': '))
+        // $('#glossaryDiv')[0].scrollTop = $('#glossaryDiv')[0].scrollHeight;
+      };
+    </script>
+  </body>
+</html>

@@ -1,3 +1,4 @@
-Pick a week above to find the notes or slides you're looking for!
+Use the gh-pages branch to host class content.
 
-Generally speaking, homework will be posted into notes for each class, but I will also put a direct link up on Schoology.
+__Glossary__
+Available at: '/fewd/:class_id/glossary'
