@@ -1,0 +1,30 @@
+/*1*/
+.page #fancy
+p#fancy
+#fancy
+
+/*2*/
+a.small
+.small
+.page .small
+div.page a.small
+
+/*3*/
+p a
+.page p a
+div.page p a
+
+/*4*/
+.mad-favs li
+div.page .mad-favs li
+
+/*5*/
+.sparkles
+p.sparkles
+
+/*6*/
+p .small
+div.page p a.small
+
+
+
