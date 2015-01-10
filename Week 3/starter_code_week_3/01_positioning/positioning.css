@@ -1,0 +1,65 @@
+.outer {
+	width: 800px;
+	height: 400px;
+	margin: 10px auto;
+	background: #9FE4E7;
+	/*position: relative;*/
+}
+
+.inner {
+	width: 200px;
+	height: 200px;
+	background: rgb(253, 89, 89);
+	/*position: absolute;*/
+	/*right: 0px;*/
+	/*top: 0px;*/
+	/*z-index:3;*/
+}
+
+.bunch {
+  position: absolute;
+  background-image: url('brady-bunch.jpg');
+  height: 80px;
+  width: 107px;
+}
+
+/* using css sprite method */
+/* img is 320 x 240 --> i.e. each headshot is 107px x 80px */
+/*0, 107, 214*/
+/*0, 80, 160*/
+
+.brady1 {
+  background-position: 0px 0px;
+}
+
+.brady2 {
+  background-position: 0px 80px;
+}
+
+.brady3 {
+  background-position: 0px 160px;
+}
+
+.brady4 {
+  background-position: 107px 0px;
+}
+
+.brady5 {
+  background-position: 107px 80px;
+}
+
+.brady6 {
+  background-position: 107px 160px;
+}
+
+.brady7 {
+  background-position: 214px 0px;
+}
+
+.brady8 {
+  background-position: 214px 80px;
+}
+
+.brady9 {
+  background-position: 214px 160px;
+}
